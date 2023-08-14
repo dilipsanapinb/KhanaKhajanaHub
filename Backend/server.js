@@ -1,8 +1,19 @@
 const express = require('express');
 const {sequelize } = require('./models');
+const userRoutes = require('./routes/user.route');
 
 const app = express();
 
+app.use(express.json());
+
+app.get('/', (req,res) => {
+    res.status(200).json({message:"Welcome to KhanaKhazanaHub App"})
+})
+
+
+// routes
+
+app.use('/user', userRoutes);
 
 sequelize.sync().then(() => {
     app.listen(8000, async () => {

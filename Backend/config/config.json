@@ -2,7 +2,7 @@
   "development": {
     "username": "admin",
     "password": "12345678",
-    "database": "blogifydata",
+    "database": "KhanaKhazanaHub",
     "host": "database-3.ccrqo0yqvxco.eu-north-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
