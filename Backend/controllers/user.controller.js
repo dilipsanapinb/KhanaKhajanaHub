@@ -64,25 +64,25 @@ exports.registerUser = async (req, res) => {
 
 // login the user
 exports.loginUser = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    let user = await users.findOne({ where: { email } });
-    if (!user) {
-        return res.status(400).json({ message: "User not found" });
+    try {
+        const { email, password } = req.body;
+        let user = await users.findOne({ where: { email } });
+        if (!user) {
+            return res.status(400).json({ message: "User not found" });
+        }
+        // console.log(user);
+        let hashpass = user.password;
+        bcrypt.compare(password, hashpass, async function (err, result) {
+            if (result) {
+                var token = jwt.sign({ userId: user.id }, process.env.secrete);
+                res.send({ msg: "Login is Successfull", token });
+            } else {
+                res.status(401).send("Wrong Credential's");
+                console.log(err);
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Something went wrong on the server" });
     }
-    // console.log(user);
-    let hashpass = user.password;
-    bcrypt.compare(password, hashpass, async function (err, result) {
-      if (result) {
-        var token = jwt.sign({ userId: user.id }, process.env.secrete);
-        res.send({ msg: "Login is Successfull", token });
-      } else {
-        res.status(401).send("Wrong Credential's");
-        console.log(err);
-      }
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Something went wrong on the server" });
-  }
 };
