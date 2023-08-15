@@ -22,7 +22,7 @@ const SignInPage = () => {
                     <Text fontSize={'4xl'}
                         color={'black'}
                         textAlign={'center'}>
-                        KhanaKhazana
+                        KhanaKhazana App
                     </Text>
                 </Box>
                 <Box
