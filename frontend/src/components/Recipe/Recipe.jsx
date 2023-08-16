@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import {Container,Heading,Flex,Box,Center,Image,Text,Button,SimpleGrid} from '@chakra-ui/react'
+import { Container, Heading, Flex, Box, Center, Image, Text, Button, SimpleGrid } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 const Recipe = () => {
     const [recipes, setRecipes] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const navigate = useNavigate();
     const [totalPages,setTotalPages]=useState(1)
     useEffect(() => {
         
@@ -11,8 +13,8 @@ const Recipe = () => {
     }, [currentPage]);
     const fetchRecipe = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/recipe/api/recipes?page=${currentPage}&pageSize=10`);
-                console.log(response);
+                const response = await axios.get(`http://localhost:8000/recipe/?page=${currentPage}&pageSize=10`);
+                // console.log(response);
                 const { recipes: fetchedRecipes, totalCount } = response.data;
                 setRecipes(fetchedRecipes);
                 setTotalPages(Math.ceil(totalCount / 10));
@@ -21,7 +23,11 @@ const Recipe = () => {
                 console.log('Error fetching recipe:', error);
             }
     }
-    console.log(recipes);
+    // console.log(recipes);
+
+    const handleView = (recipeId) => {
+        navigate(`/recipe/${recipeId}`)
+    }
     return (
         <Container
             maxW="xxl"
@@ -44,7 +50,7 @@ const Recipe = () => {
                         transition="transform 0.2s"
                         _hover={{ transform: 'scale(1.05)' }}
                     >
-                         <Image
+                        <Image
                             src={recipe.image}
                             alt={recipe.title}
                             boxSize="300px"
@@ -62,8 +68,13 @@ const Recipe = () => {
                             {recipe.title}
                         
                                 </Box>
-                         </Heading>
-                        <Button colorScheme="teal" size="sm" mt={2} w="100%">
+                        </Heading>
+                        <Button
+                            colorScheme="teal"
+                            size="sm"
+                            mt={2} w="100%"
+                            onClick={()=>{handleView(recipe.id)}}
+                        >
                             View Recipe
                         </Button>
                     </Box>
