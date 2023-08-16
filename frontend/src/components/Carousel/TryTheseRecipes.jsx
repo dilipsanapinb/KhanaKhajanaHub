@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Flex, Button, Icon, Image, Center, Heading, useBreakpointValue,Text } from '@chakra-ui/react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-
 const recipesData = [
     {
         id: 1,
@@ -38,23 +37,10 @@ const recipesData = [
         name: 'Pani puri',
         chef: 'Sanjeev Kapoor',
         image:'https://moonrice.net/wp-content/uploads/2023/04/PaniPuri-7.jpg'
-    },
-    {
-        id: 7,
-        name: 'Misal Pav',
-        chef: 'Ranvir Brar',
-        image:'https://smithakalluraya.com/wp-content/uploads/2014/05/misal-pav-recipe-1.jpg'
-    },
-    {
-        id: 8,
-        name: 'Butten Chicken',
-        chef: 'Vokas Khanna',
-        image:'https://www.licious.in/blog/wp-content/uploads/2020/10/butter-chicken--750x750.jpg'
-  },
-];
-
-const LatestRecipeSlider = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    }
+]
+const TryTheseRecipes = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
     const handleNext = () => {
         setCurrentIndex(currentIndex + 1);
@@ -65,7 +51,7 @@ const LatestRecipeSlider = () => {
     };
 
     const showLeftArrow = currentIndex > 0;
-    const showRightArrow = currentIndex < recipesData.length - 4;
+    const showRightArrow = currentIndex < recipesData.length - 1;
      const isMobile = useBreakpointValue({ base: true, md: false });
 
     return (
@@ -74,11 +60,12 @@ const LatestRecipeSlider = () => {
             <Box
             
                 width={'80%'}
-            m={'auto'}>
+                m={'auto'}
+            >
                 <Heading
                     as="h3"
                     textAlign="left" mb={4}>
-            Our Latest Recipes
+            Try These Recipes
         </Heading>
             </Box>
             
@@ -86,7 +73,7 @@ const LatestRecipeSlider = () => {
                 align="center"
                 justify="center"
                 mb={4}
-                maxWidth={'80%'}
+                maxWidth={'100%'}
                 m={'auto'}>
             {showLeftArrow && (
                 <Button variant="ghost" onClick={handlePrev}>
@@ -96,28 +83,33 @@ const LatestRecipeSlider = () => {
                 <Flex
                     w={'100%'}
                     justifyContent={'space-around'}>
-                {recipesData.slice(currentIndex, currentIndex + (isMobile ? 2 : 4)).map((recipe) => (
+                {recipesData.slice(currentIndex, currentIndex + (isMobile ? 1 : 2)).map((recipe) => (
                     <Box
                         key={recipe.id}
                         p={2}
                         width={isMobile ? '100%' : 'auto'}
                         mb={4}
-                        // textAlign="center" // Center the content
+                        textAlign="center" // Center the content
                     >
                         <Image
                             src={recipe.image}
                             alt={recipe.name}
-                            boxSize="300px"
+                            boxSize="400px"
                             borderRadius='10px'
                             mx="auto"
                         />
-                        <Heading as="h3" size="md" mt={2} overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
+                        <Heading
+                            as="h3"
+                            size="md"
+                            mt={2}
                             
-                            <Box maxWidth="170px"
-                            overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap"
-                            > 
+                            overflow="hidden"
+                            textOverflow="ellipsis"
+                            whiteSpace="nowrap">
+                            
+                           
                                     {recipe.name}
-                                </Box>
+                                
                         </Heading>
                         <Box mt={1}>{recipe.chef}</Box>
                     </Box>
@@ -131,5 +123,6 @@ const LatestRecipeSlider = () => {
         </Flex>
     </Box>
     );
-};
-export default LatestRecipeSlider;
+}
+
+export default TryTheseRecipes

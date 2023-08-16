@@ -5,6 +5,8 @@ import { Box, Flex, Heading,Icon,Text,Image } from '@chakra-ui/react';
 import { FcLike } from 'react-icons/fc';
 import ChefSlider from '../components/Carousel/ChefSlider';
 import LatestRecipeSlider from '../components/Carousel/LatestRecipeSlider';
+import TryTheseRecipes from '../components/Carousel/TryTheseRecipes';
+import TodaysRecipe from '../components/Carousel/TodaysRecipe';
 const LandingPage = () => {
     return (
         <div>
@@ -55,8 +57,17 @@ const LandingPage = () => {
                 </Box>
 
                 {/* New section below the banner */}
-                <Flex align="center" justify="center" py={8} bg={'gray.100'}>
-                    <Box w="70%">
+                <Box
+                bg={'gray.100'}
+                >
+                    <Flex
+                    align="center"
+                    justify="center"
+                    width={'80%'}
+                    m={'auto'}
+                   
+                    py={8} >
+                    <Box w="100%">
                         <Text
                             mt={4}
                             fontSize="xl"
@@ -74,17 +85,27 @@ const LandingPage = () => {
                         
                     </Box>
                 </Flex>
-
-                {/* Chef Slider */}
-                <Box bg="gray.200" p={8}>
-                    <ChefSlider />
                 </Box>
                 
+
+                {/* Todays recipe */}
+                <Box bg={'gray.300'} p={8}>
+                    <TodaysRecipe/>
+                </Box>
                 {/* Latest Recipe Slider */}
                 <Box bg="gray.300" p={8}>
                     <LatestRecipeSlider />
                 </Box>
+
+                {/* Try Recipe Slider */}
+                <Box bg="gray.300" p={8}>
+                    <TryTheseRecipes />
+                </Box>
                 
+                {/* Chef Slider */}
+                <Box bg="gray.200" p={8}>
+                    <ChefSlider />
+                </Box>
             </main>
             <footer>
                 <Footer />

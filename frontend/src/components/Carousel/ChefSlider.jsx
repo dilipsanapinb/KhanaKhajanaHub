@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Heading, Icon,Image,Text } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Heading, Icon,Image,Text,useBreakpointValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -58,22 +58,39 @@ const ChefSlider = () => {
 
     const showLeftArrow = currentIndex > 0;
     const showRightArrow = currentIndex < chefsData.length - 4;
+    const isMobile = useBreakpointValue({ base: true, md: false });
 
     return (
         <Box>
-        <Heading as="h2" textAlign="center" mb={4}>
-        About Chefs
+            <Box
+                maxWidth={'80%'}
+                m={'auto'}
+            >
+                <Heading as="h3" textAlign="left" mb={4}>
+        More from...
       </Heading>
+            </Box>
+        
             <Flex
-                align="center" justify="center" mb={4}>
+                align="center"
+                justify="center"
+                mb={4}
+            maxWidth={'80%'}
+                m={'auto'}>
+                
                 {showLeftArrow && (
                     <Button variant="ghost" onClick={handlePrev}>
                         <Icon as={FaChevronLeft} />
                     </Button>
                 )}
                 
-                <Flex overflowX="hidden" w={'80%'} display={'flex'} justifyContent={'space-around'}>
-                    {chefsData.slice(currentIndex, currentIndex + 4).map((chef) => (
+                <Flex
+                    overflowX="hidden"
+                    w={'100%'}
+                    display={'flex'}
+                    justifyContent={'space-around'}
+                >
+                    {chefsData.slice(currentIndex, currentIndex + (isMobile?3 :4)).map((chef) => (
                         <Box key={chef.id} p={2}>
                             
                             <Image
