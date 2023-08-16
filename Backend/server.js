@@ -1,7 +1,7 @@
 const express = require("express");
 const { sequelize } = require("./models");
 const userRoutes = require("./routes/user.routes");
-const recipeRoutes=require('./routes/recipe.routes')
+const recipeRoutes = require("./routes/recipe.routes");
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 // routes
 
 app.use("/user", userRoutes);
-app.use('/recipe',recipeRoutes)
+app.use("/recipe", recipeRoutes);
 
 sequelize
   .sync()
