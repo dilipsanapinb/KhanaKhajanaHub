@@ -15,7 +15,8 @@ exports.getAllRecipies = async(req,res) => {
         console.log("Received page:", page, "pageSize:", pageSize);
         try {
             const response = await axios.get(
-                `https://api.spoonacular.com/recipes/complexSearch?apiKey=${SPOONACULAR_API_KEY}&offset=${(page-1)*pageSize}`
+                `https://api.spoonacular.com/recipes/complexSearch?apiKey=${SPOONACULAR_API_KEY}&offset=${(page - 1) * pageSize
+                }&number=50`
             );
 
             const recipes = response.data.results;
@@ -38,18 +39,17 @@ exports.getRecipeById = async(req,res) => {
         const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
         if (!SPOONACULAR_API_KEY) {
             return res.status(404).json({ message: 'API-Key not found' });
-
-            const recipeId = req.params.id;
-
-            // Fetch recipe details from the API;
-
-            const response = await axios.get(
-              `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${SPOONACULAR_API_KEY}`
-            );
-
-            const recipeDetails = response.data;
-            res.status(200).json(recipeDetails);
         }
+        const recipeId = req.params.id;
+
+        // Fetch recipe details from the API;
+
+        const response = await axios.get(
+            `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${SPOONACULAR_API_KEY}`
+        );
+
+        const recipeDetails = response.data;
+        res.status(200).json(recipeDetails);
     } catch (error) {
         console.log(error.message);
         res
