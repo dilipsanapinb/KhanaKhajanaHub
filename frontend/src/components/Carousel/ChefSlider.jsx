@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Heading, Icon,Image,Text,useBreakpointValue } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Icon,Image,useBreakpointValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 

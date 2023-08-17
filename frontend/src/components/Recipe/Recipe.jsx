@@ -11,7 +11,7 @@ const Recipe = () => {
         
         fetchRecipe()
     }, [currentPage]);
-    const fetchRecipe = async () => {
+    const fetchRecipe = async (currentPage) => {
             try {
                 const response = await axios.get(`http://localhost:8000/recipe/?page=${currentPage}&pageSize=10`);
                 const { recipes: fetchedRecipes, totalCount } = response.data;
