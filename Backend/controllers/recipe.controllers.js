@@ -38,18 +38,15 @@ exports.getRecipeById = async(req,res) => {
         const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
         if (!SPOONACULAR_API_KEY) {
             return res.status(404).json({ message: 'API-Key not found' });
-
+        }
             const recipeId = req.params.id;
-
             // Fetch recipe details from the API;
-
-            const response = await axios.get(
-              `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${SPOONACULAR_API_KEY}`
-            );
-
+        const response = await axios.get(
+          `https://api.spoonacular.com/recipes/${recipeId}/information?includeNutrition=true &apiKey=${SPOONACULAR_API_KEY}`
+        );
             const recipeDetails = response.data;
             res.status(200).json(recipeDetails);
-        }
+        
     } catch (error) {
         console.log(error.message);
         res
