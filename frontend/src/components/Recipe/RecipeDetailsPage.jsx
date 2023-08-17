@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
+
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Badge, Box, Button, Container, Flex, Heading, Icon, Image, SimpleGrid, Stack, Text } from '@chakra-ui/react';
+import {  Box, Button, Container, Flex, Heading, Icon, Image, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
-import { FcLikePlaceholder } from 'react-icons/fc'
+import {AiOutlineMobile} from 'react-icons/ai'
 import { RiHeartPulseFill } from 'react-icons/ri'
-import { FcAlarmClock } from 'react-icons/fc'
+import { FcAlarmClock, } from 'react-icons/fc'
 import { IoLeafSharp } from 'react-icons/io5'
 import{LuSquareDot} from 'react-icons/lu'
 import { GiWheat } from 'react-icons/gi'
-import{LuIndianRupee} from 'react-icons/lu'
+import { LuIndianRupee } from 'react-icons/lu'
+import { BsBookmark, BsHeart,BsShare } from 'react-icons/bs';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import { useNavigate } from 'react-router-dom';
@@ -19,13 +21,13 @@ const RecipeDetails = () => {
     const [nutrients, setNutrients] = useState({})
     const navigate = useNavigate();
     // get a nutrints by id
-     useEffect(() => {
+    useEffect(() => {
         const fetchNutrients = async () => {
             const response = await axios.get(`http://localhost:8000/recipe/${id}/nutrients`);
             setNutrients(response.data);
         }
         fetchNutrients()
-    },[id])
+    }, [id])
     // fetching the recipe by id
     useEffect(() => {
         const fetchData = async () => {
@@ -35,25 +37,25 @@ const RecipeDetails = () => {
         fetchData()
     }, [id]);
 
-    const handleSave =async () => {
+    const handleSave = async () => {
         try {
             const token = JSON.parse(localStorage.getItem('userInfo'));
-            console.log('Token', token);
+            // console.log('Token', token);
             if (token) {
                 const data = {
-                recipeid: recipe.id,
-                title: recipe.title,
-                image:recipe.image
+                    recipeid: recipe.id,
+                    title: recipe.title,
+                    image: recipe.image
                 }
                 console.log(data);
-                const response = await axios.post('http://localhost:8000/savedrecipe/save', 
+                const response = await axios.post('http://localhost:8000/savedrecipe/save',
                     data
-                , {
-                    headers: {
-                        'Content-type': 'Application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+                    , {
+                        headers: {
+                            'Content-type': 'Application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
 
                 console.log('Response:', response.data);
             } else {
@@ -73,12 +75,17 @@ const RecipeDetails = () => {
             <nav>
                 <Navbar />
             </nav>
-            <main>
-                <Container
+            <main
+            >
+                <Box
+                bgColor={'gray.200'}
+                >
+                    <Container
                     maxW={'xxl'}
                     py={8}
                     width={'90%'}
                     margin={'auto'}
+                    
                 >
                     {/* Banner Start */}
                     <Stack
@@ -104,56 +111,59 @@ const RecipeDetails = () => {
                                 borderRadius={'10px'}
                                 mx={'auto'}
                             />
-                            {/* Badgeof dish */}
-                            <Badge
-                                colorScheme="teal"
-                                fontSize="sm"
-                                fontWeight="semibold"
-                                position={'absolute'}
-                                bottom="0"
-                                right="20"
-                                m={2}
-                                p={1}
-                                zIndex="1"
-                            >
-                                <Flex align={'center'}>
-                                    <Icon as={FcLikePlaceholder} boxSize={4} mr={'auto'} />
-                                    {recipe.aggregateLikes} Likes
-                                </Flex>
-                                
-                            </Badge>
+                            
                         </Box>
                     </Stack>
 
                     {/* Save the recipe button */}
-                    <Box
-                                borderWidth="1px"
-                                borderRadius="lg"
-                                // boxShadow="md"
-                                bg="white"
-                                height={'100px'}
-                                maxW={'auto'}
-                                p={4}
-                        display="flex"
-                        mt={'10'}
-                                alignItems="center"
-                                justifyContent="center"
-                    >
-                        <Button
-                            width={'50%'}
-                            margin={'auto'}
-                            colorScheme='teal'
-                            fontWeight={'bold'}
-                            onClick={handleSave}
-                        >
-                            Save to Favorite
-                        </Button>
-                    </Box>
-                    {/* Information- Health , time to prepare, vegan gluten ,veg/Non-veg, cost*/}
-                    <Box
+                    <Flex
+                        borderRadius={'lg'}
+                        bg={'#fff5ea'}
+                        height={'90px'}
+                        maxW={'60%'}
+                        m={'auto'}
+                        p={4}
                         mt={10}
+                        alignItems={'center'}
+                        justifyContent={'space-between'}
                     >
-                        
+                        {/* Likes */}
+                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'}>
+                            <Icon as={BsHeart} boxSize={8} />
+                            <Text fontSize={'sm'} mt={2}>{recipe.aggregateLikes }  </Text>
+                        </Box>
+
+
+                        {/* save */}
+                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'}>
+                            <Button  size={'sm'} onClick={handleSave} bg={'none'}>
+                                <Icon as={BsBookmark} boxSize={8} />
+                            </Button>
+                            <Text fontSize={'sm'} mt={2}>Save</Text>
+                        </Box>
+
+                        {/* Share */}
+                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'}>
+                            <Icon as={BsShare} boxSize={8} />
+                            <Text fontSize={'sm'} mt={2}>Share </Text>
+                        </Box>
+
+                        {/*in app */}
+                        {/* Share */}
+                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'}>
+                            <Icon as={AiOutlineMobile} boxSize={8} />
+                            <Text fontSize={'sm'} mt={2}>In app </Text>
+                        </Box>
+                    </Flex>
+                    {/* Information- Health , time to prepare, vegan gluten ,veg/Non-veg, cost*/}
+                        <Box
+                            width={'90%'}
+                            margin={'auto'}
+                            mt={10}
+                    >
+                        <Text fontSize="xl" fontWeight="bold" mb={4}>
+                            Overview:
+                        </Text>
                         <SimpleGrid columns={{ base: 2, sm: 3, md: 3 }} spacing={4}>
                             {/* Health */}
                             
@@ -302,84 +312,84 @@ const RecipeDetails = () => {
 
                     {/* nuttrients per serving */}
                     <Box width={'90%'} margin={'auto'} mt={10}>
-  <Text fontSize="xl" fontWeight="bold" mb={4}>
-    Nutrients per Serving:
-  </Text>
-  <SimpleGrid columns={{ base: 2, sm: 4 }} spacing={4}>
-    {/* Calories */}
-    <Box
-      borderWidth="1px"
-      borderRadius="lg"
-      boxShadow="md"
-      bg="white"
-      p={4}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Text fontSize="lg" fontWeight="bold">
-        Calories
-      </Text>
-      <Text fontSize="md">{nutrients.calories
-} kcal</Text>
-    </Box>
+                        <Text fontSize="xl" fontWeight="bold" mb={4}>
+                            Nutrients per Serving:
+                        </Text>
+                        <SimpleGrid columns={{ base: 2, sm: 4 }} spacing={4}>
+                            {/* Calories */}
+                            <Box
+                                borderWidth="1px"
+                                borderRadius="lg"
+                                boxShadow="md"
+                                bg="white"
+                                p={4}
+                                display="flex"
+                                flexDirection="column"
+                                alignItems="center"
+                                justifyContent="center"
+                            >
+                                <Text fontSize="lg" fontWeight="bold">
+                                    Calories
+                                </Text>
+                                <Text fontSize="md">{nutrients.calories
+                                } kcal</Text>
+                            </Box>
     
-    {/* Fat */}
-    <Box
-      borderWidth="1px"
-      borderRadius="lg"
-      boxShadow="md"
-      bg="white"
-      p={4}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Text fontSize="lg" fontWeight="bold">
-        Fat
-      </Text>
-      <Text fontSize="md">{nutrients.fat} </Text>
-    </Box>
+                            {/* Fat */}
+                            <Box
+                                borderWidth="1px"
+                                borderRadius="lg"
+                                boxShadow="md"
+                                bg="white"
+                                p={4}
+                                display="flex"
+                                flexDirection="column"
+                                alignItems="center"
+                                justifyContent="center"
+                            >
+                                <Text fontSize="lg" fontWeight="bold">
+                                    Fat
+                                </Text>
+                                <Text fontSize="md">{nutrients.fat} </Text>
+                            </Box>
     
-    {/* Carbs */}
-    <Box
-      borderWidth="1px"
-      borderRadius="lg"
-      boxShadow="md"
-      bg="white"
-      p={4}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Text fontSize="lg" fontWeight="bold">
-        Carbs
-      </Text>
-      <Text fontSize="md">{nutrients.carbs} </Text>
-    </Box>
+                            {/* Carbs */}
+                            <Box
+                                borderWidth="1px"
+                                borderRadius="lg"
+                                boxShadow="md"
+                                bg="white"
+                                p={4}
+                                display="flex"
+                                flexDirection="column"
+                                alignItems="center"
+                                justifyContent="center"
+                            >
+                                <Text fontSize="lg" fontWeight="bold">
+                                    Carbs
+                                </Text>
+                                <Text fontSize="md">{nutrients.carbs} </Text>
+                            </Box>
     
-    {/* Proteins */}
-    <Box
-      borderWidth="1px"
-      borderRadius="lg"
-      boxShadow="md"
-      bg="white"
-      p={4}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Text fontSize="lg" fontWeight="bold">
-        Proteins
-      </Text>
-      <Text fontSize="md">{nutrients.protein} </Text>
+                            {/* Proteins */}
+                            <Box
+                                borderWidth="1px"
+                                borderRadius="lg"
+                                boxShadow="md"
+                                bg="white"
+                                p={4}
+                                display="flex"
+                                flexDirection="column"
+                                alignItems="center"
+                                justifyContent="center"
+                            >
+                                <Text fontSize="lg" fontWeight="bold">
+                                    Proteins
+                                </Text>
+                                <Text fontSize="md">{nutrients.protein} </Text>
                             </Box>
 
-  </SimpleGrid>
+                        </SimpleGrid>
                     </Box>
                     
 
@@ -451,6 +461,7 @@ const RecipeDetails = () => {
                         </SimpleGrid>
                     </Box>
                 </Container>
+                </Box>
             </main>
             <footer>
                 <Footer />
