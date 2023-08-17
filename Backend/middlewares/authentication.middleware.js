@@ -3,16 +3,16 @@ require("dotenv").config();
 
 const protected = (req, res, next) => {
     try {
-        const token = req.headers.authorization.splir(" ")[1];
+        const token = req.headers.authorization.split(" ")[1];
         if (!token) {
             return res
-                .status(404)
+                .status(401)
                 .json({ message: "Token not found, Please login first" });
         }
         const decoded = jwt.verify(token, process.env.secrete);
         if (decoded) {
-            const userId = decoded.usedId;
-            req.body.usedId = userId;
+            const userId = decoded.userId;
+            req.userId = userId;
             next();
         }
     } catch (error) {
