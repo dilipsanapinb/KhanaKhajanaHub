@@ -15,7 +15,7 @@ exports.getAllRecipies = async(req,res) => {
         console.log("Received page:", page, "pageSize:", pageSize);
         try {
             const response = await axios.get(
-                `https://api.spoonacular.com/recipes/complexSearch?apiKey=${SPOONACULAR_API_KEY}&offset=${(page-1)*pageSize}`
+                `https://api.spoonacular.com/recipes/complexSearch?apiKey=${SPOONACULAR_API_KEY}&offset=${(page - 1) * pageSize}&number=50`
             );
 
             const recipes = response.data.results;
@@ -47,7 +47,7 @@ exports.getRecipeById = async (req, res) => {
             );
 
             const nutrients = await axios.get(
-              `https://api.spoonacular.com/recipes/${recipeId}/nutritionWidget.json?apiKey=${SPOONACULAR_API_KEY}`
+                `https://api.spoonacular.com/recipes/${recipeId}/nutritionWidget.json?apiKey=${SPOONACULAR_API_KEY}`
             );
 
             const recipeDetails = response.data;
