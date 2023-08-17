@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Badge, Box, Container, Flex, Heading, Icon, Image, SimpleGrid, Stack, Text } from '@chakra-ui/react';
+import { Badge, Box, Button, Container, Flex, Heading, Icon, Image, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import { FcLikePlaceholder } from 'react-icons/fc'
 import { RiHeartPulseFill } from 'react-icons/ri'
@@ -12,11 +12,12 @@ import { GiWheat } from 'react-icons/gi'
 import{LuIndianRupee} from 'react-icons/lu'
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import { useNavigate } from 'react-router-dom';
 const RecipeDetails = () => {
     const { id } = useParams();
     const [recipe, setRecipe] = useState({});
     const [nutrients, setNutrients] = useState({})
-    
+    const navigate = useNavigate();
     // get a nutrints by id
      useEffect(() => {
         const fetchNutrients = async () => {
@@ -33,6 +34,26 @@ const RecipeDetails = () => {
         }
         fetchData()
     }, [id]);
+
+    const handleSave =async () => {
+        try {
+            const token=JSON.parse(localStorage.getItem('userInfo'))
+            const data = {
+                id: recipe.id,
+                title: recipe.title,
+                image:recipe.image
+            }
+            const response = await axios.post('', {
+                data
+            }, {
+                'Content-type': 'Application/json',
+                'Authorization':`Bearet ${token}`
+            })
+        } catch (error) {
+            console.log('Error save the recipe:', error.message);
+        }
+        navigate('/recipe/save')
+    }
 
     console.log(recipe);
     console.log(nutrients);
@@ -93,7 +114,31 @@ const RecipeDetails = () => {
                         </Box>
                     </Stack>
 
-                    {/* Information */}
+                    {/* Save the recipe button */}
+                    <Box
+                                borderWidth="1px"
+                                borderRadius="lg"
+                                // boxShadow="md"
+                                bg="white"
+                                height={'100px'}
+                                maxW={'auto'}
+                                p={4}
+                        display="flex"
+                        mt={'10'}
+                                alignItems="center"
+                                justifyContent="center"
+                    >
+                        <Button
+                            width={'50%'}
+                            margin={'auto'}
+                            colorScheme='teal'
+                            fontWeight={'bold'}
+                            onClick={handleSave}
+                        >
+                            Save to Favorite
+                        </Button>
+                    </Box>
+                    {/* Information- Health , time to prepare, vegan gluten ,veg/Non-veg, cost*/}
                     <Box
                         mt={10}
                     >
