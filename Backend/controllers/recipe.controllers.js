@@ -52,7 +52,7 @@ exports.getRecipeById = async (req, res) => {
 
             const recipeDetails = response.data;
             const nutrientsDetails = nutrients.data;
-            res.status(200).json(recipeDetails,nutrientsDetails);
+            res.status(200).json({ recipeDetails, nutrientsDetails });
         } catch (error) {
             console.log(error.message);
             res
