@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Container, Heading, Flex, Box, Center, Image, Text, Button, SimpleGrid } from '@chakra-ui/react';
+import { Container, Heading, Box, Center, Image, Text, Button, SimpleGrid } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 const Recipe = () => {
     const [recipes, setRecipes] = useState([]);
