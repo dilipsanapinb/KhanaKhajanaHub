@@ -33,24 +33,40 @@ exports.getAllRecipies = async(req,res) => {
 
 // Get a recipe by id
 
-exports.getRecipeById = async(req,res) => {
+exports.getRecipeById = async (req, res) => {
     try {
         const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
         if (!SPOONACULAR_API_KEY) {
             return res.status(404).json({ message: 'API-Key not found' });
         }
+        try {
             const recipeId = req.params.id;
             // Fetch recipe details from the API;
-        const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${recipeId}/information?includeNutrition=true &apiKey=${SPOONACULAR_API_KEY}`
-        );
+            const response = await axios.get(
+                `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${SPOONACULAR_API_KEY}`
+            );
+
+            const nutrients = await axios.get(
+              `https://api.spoonacular.com/recipes/${recipeId}/nutritionWidget.json?apiKey=${SPOONACULAR_API_KEY}`
+            );
+
             const recipeDetails = response.data;
-            res.status(200).json(recipeDetails);
+            const nutrientsDetails = nutrients.data;
+            res.status(200).json(recipeDetails,nutrientsDetails);
+        } catch (error) {
+            console.log(error.message);
+            res
+                .status(500)
+                .json({
+                    message: "Something went wrong at geting a recipie by id",
+                });
+        }
+        
         
     } catch (error) {
         console.log(error.message);
         res
-          .status(500)
-          .json({ message: "Something went wrong at geting a recipie by id" });
+            .status(500)
+            .json({ message: "Something went wrong at geting a recipie by id" });
     }
-}
+};
