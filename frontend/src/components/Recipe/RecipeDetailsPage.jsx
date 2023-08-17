@@ -24,7 +24,7 @@ const RecipeDetails = () => {
             setNutrients(response.data);
         }
         fetchNutrients()
-    })
+    },[id])
     // fetching the recipe by id
     useEffect(() => {
         const fetchData = async () => {
@@ -242,6 +242,91 @@ const RecipeDetails = () => {
                         </SimpleGrid>
                     </Box>
                     
+
+
+                    {/* nuttrients per serving */}
+                    <Box width={'90%'} margin={'auto'} mt={10}>
+  <Text fontSize="xl" fontWeight="bold" mb={4}>
+    Nutrients per Serving:
+  </Text>
+  <SimpleGrid columns={{ base: 2, sm: 4 }} spacing={4}>
+    {/* Calories */}
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      boxShadow="md"
+      bg="white"
+      p={4}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Text fontSize="lg" fontWeight="bold">
+        Calories
+      </Text>
+      <Text fontSize="md">{nutrients.calories
+} kcal</Text>
+    </Box>
+    
+    {/* Fat */}
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      boxShadow="md"
+      bg="white"
+      p={4}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Text fontSize="lg" fontWeight="bold">
+        Fat
+      </Text>
+      <Text fontSize="md">{nutrients.fat} </Text>
+    </Box>
+    
+    {/* Carbs */}
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      boxShadow="md"
+      bg="white"
+      p={4}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Text fontSize="lg" fontWeight="bold">
+        Carbs
+      </Text>
+      <Text fontSize="md">{nutrients.carbs} </Text>
+    </Box>
+    
+    {/* Proteins */}
+    <Box
+      borderWidth="1px"
+      borderRadius="lg"
+      boxShadow="md"
+      bg="white"
+      p={4}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Text fontSize="lg" fontWeight="bold">
+        Proteins
+      </Text>
+      <Text fontSize="md">{nutrients.protein} </Text>
+                            </Box>
+
+  </SimpleGrid>
+                    </Box>
+                    
+
                     {/* Ingredients */}
                     <Box
                         width={'90%'}
