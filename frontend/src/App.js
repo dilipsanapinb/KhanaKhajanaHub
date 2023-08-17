@@ -5,6 +5,7 @@ import LandingPage from './pages/LandingPage';
 import SignInPage from './pages/SignInPage';
 import RecipePage from './pages/RecipePage';
 import RecipeDetailsPage from './components/Recipe/RecipeDetailsPage';
+import SavedRecipes from './pages/SavedRecipes';
 function App() {
   return (
     <Router>
@@ -13,6 +14,7 @@ function App() {
         <Route path="/signinpage" element={<SignInPage />} />
         <Route path="/recipepage" element={<RecipePage />} />
         <Route path="/recipe/:id" element={<RecipeDetailsPage />} />
+        <Route path="/recipe/save" element={< SavedRecipes/> } />
       </Routes>
     </Router>
   );
