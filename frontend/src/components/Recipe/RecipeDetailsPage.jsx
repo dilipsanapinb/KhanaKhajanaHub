@@ -15,16 +15,27 @@ import Footer from '../Footer';
 const RecipeDetails = () => {
     const { id } = useParams();
     const [recipe, setRecipe] = useState({});
+    const [nutrients, setNutrients] = useState({})
     
+    // get a nutrints by id
+     useEffect(() => {
+        const fetchNutrients = async () => {
+            const response = await axios.get(`http://localhost:8000/recipe/${id}/nutrients`);
+            setNutrients(response.data);
+        }
+        fetchNutrients()
+    })
+    // fetching the recipe by id
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(`http://localhost:8000/recipe/${id}`);
             setRecipe(response.data);
-            
         }
         fetchData()
     }, [id]);
+
     console.log(recipe);
+    console.log(nutrients);
     return (
         <div>
             <nav>
