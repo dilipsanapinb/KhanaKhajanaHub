@@ -18,9 +18,13 @@ const RecipeDetails = () => {
     const [nutrients, setNutrients] = useState({})
     
     // get a nutrints by id
-
-    
-    
+     useEffect(() => {
+        const fetchNutrients = async () => {
+            const response = await axios.get(`http://localhost:8000/recipe/${id}/nutrients`);
+            setNutrients(response.data);
+        }
+        fetchNutrients()
+    })
     // fetching the recipe by id
     useEffect(() => {
         const fetchData = async () => {
