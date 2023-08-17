@@ -37,22 +37,33 @@ const RecipeDetails = () => {
 
     const handleSave =async () => {
         try {
-            const token=JSON.parse(localStorage.getItem('userInfo'))
-            const data = {
-                id: recipe.id,
+            const token = JSON.parse(localStorage.getItem('userInfo'));
+            console.log('Token', token);
+            if (token) {
+                const data = {
+                recipeid: recipe.id,
                 title: recipe.title,
                 image:recipe.image
+                }
+                console.log(data);
+                const response = await axios.post('http://localhost:8000/savedrecipe/save', 
+                    data
+                , {
+                    headers: {
+                        'Content-type': 'Application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                console.log('Response:', response.data);
+            } else {
+                console.log('Token not found in local storage');
             }
-            const response = await axios.post('', {
-                data
-            }, {
-                'Content-type': 'Application/json',
-                'Authorization':`Bearet ${token}`
-            })
+            navigate('/recipe/save')
         } catch (error) {
             console.log('Error save the recipe:', error.message);
         }
-        navigate('/recipe/save')
+
     }
 
     console.log(recipe);
