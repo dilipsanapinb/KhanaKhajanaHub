@@ -39,30 +39,14 @@ exports.getRecipeById = async (req, res) => {
         if (!SPOONACULAR_API_KEY) {
             return res.status(404).json({ message: 'API-Key not found' });
         }
-        try {
+    
             const recipeId = req.params.id;
             // Fetch recipe details from the API;
             const response = await axios.get(
                 `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${SPOONACULAR_API_KEY}`
             );
-
-            const nutrients = await axios.get(
-                `https://api.spoonacular.com/recipes/${recipeId}/nutritionWidget.json?apiKey=${SPOONACULAR_API_KEY}`
-            );
-
-            const recipeDetails = response.data;
-            const nutrientsDetails = nutrients.data;
-            res.status(200).json({ recipeDetails, nutrientsDetails });
-        } catch (error) {
-            console.log(error.message);
-            res
-                .status(500)
-                .json({
-                    message: "Something went wrong at geting a recipie by id",
-                });
-        }
-        
-        
+        const recipeDetails = response.data;
+            res.status(200).json(recipeDetails);
     } catch (error) {
         console.log(error.message);
         res
@@ -70,3 +54,27 @@ exports.getRecipeById = async (req, res) => {
             .json({ message: "Something went wrong at geting a recipie by id" });
     }
 };
+
+// get nutrients by id
+
+exports.getNutrinetsByIs =async () => {
+    try {
+        const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
+        if (!SPOONACULAR_API_KEY) {
+            return res.status(404).json({ message: 'API-Key not found' });
+        }
+    
+            const recipeId = req.params.id;
+            // Fetch recipe details from the API;
+            const response = await axios.get(
+                `https://api.spoonacular.com/recipes/${recipeId}/nutritionWidget.json?apiKey=${SPOONACULAR_API_KEY}`
+            );
+        const nutrientsDetails = response.data;
+            res.status(200).json(nutrientsDetails);
+    } catch (error) {
+        console.log(error.message);
+        res
+            .status(500)
+            .json({ message: "Something went wrong at geting a recipie by id" });
+    }
+}

@@ -8,3 +8,6 @@ recipeRoutes.get('/', reciController.getAllRecipies);
 // get a receipt by id
 recipeRoutes.get('/:id',reciController.getRecipeById)
 module.exports = recipeRoutes;
+
+// get nutrinets by id
+recipeRoutes.get('/:id/nutrients',reciController.getNutrinetsByIs)
