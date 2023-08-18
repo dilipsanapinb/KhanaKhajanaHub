@@ -1,8 +1,9 @@
-import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, VStack ,Text} from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useToast } from '@chakra-ui/react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import { FcGoogle } from 'react-icons/fc';
 const Signup = () => {
     const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
@@ -71,6 +72,11 @@ const Signup = () => {
         }
     };
 
+    // google OAuth
+    const googleAuth = () => {
+        window.open(`http://localhost:8000/google/user/callback`,
+            "_self");
+    };
     return (
         <div>
             <VStack
@@ -127,6 +133,19 @@ const Signup = () => {
                 >
                     Sign Up
                 </Button>
+                <Text fontSize="14px" color="#2c444e" textAlign="center" mt={2}>
+                    or
+                </Text>
+                <Button
+                    // colorScheme="white"
+                    mt={3}
+                    width="100%"
+                    onClick={googleAuth}
+                    leftIcon={<FcGoogle />}
+                >
+                    Sign in with Google
+                </Button>
+
             </VStack>
         </div>
     );
