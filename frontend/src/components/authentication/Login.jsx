@@ -7,10 +7,12 @@ import {
     InputRightElement,
     VStack,
     InputGroup,
+    Text
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/toast";
+import { FcGoogle } from 'react-icons/fc';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -76,6 +78,12 @@ const Login = () => {
         }
     }
 
+    const googleAuth = () => {
+        window.open(
+			`http://localhost:8000/user/google/callback`,
+			"_self"
+		);
+    }
     return (
         <div>
             <VStack spacing="5px" color="black">
@@ -121,8 +129,20 @@ const Login = () => {
                     onClick={submitHandler}
                     isLoading={loading}
                 >
-                    Login
+                    Sign In
                 </Button>
+                <Text fontSize="14px" color="#2c444e" textAlign="center" mt={2}>
+                    or
+                </Text>
+                <Button
+                    // colorScheme="white"
+                    width="100%"
+                    onClick={googleAuth}
+                    leftIcon={<FcGoogle />}
+                >
+                    Sign in with Google
+                </Button>
+
             </VStack>
         </div>
     );
