@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Container, Heading, Box, Center, Image, Text, Button, SimpleGrid } from '@chakra-ui/react';
+import { Container, Heading, Box, Center, Image, Text, Button, SimpleGrid, Flex } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 const Recipe = () => {
     const [recipes, setRecipes] = useState([]);
@@ -34,6 +34,12 @@ const Recipe = () => {
             // border={'1px solid'}
             width='90%'
             margin={'auto'}>
+            {/* Saved Recipes Button */}
+            <Flex justifyContent="flex-end" mb={4}>
+    <Button colorScheme="teal" onClick={() => navigate("/recipe/save")}>
+      Saved Recipes
+    </Button>
+  </Flex>
             <Heading as="h1" textAlign="center" mb={8}>
                 Explore Delicious Recipes
             </Heading>
@@ -50,11 +56,12 @@ const Recipe = () => {
                         _hover={{ transform: 'scale(1.05)' }}
                     >
                         <Image
+                            width={'100%'}
                             src={recipe.image}
                             alt={recipe.title}
-                            boxSize="300px"
+                            // boxSize="250px"
                             borderRadius='10px'
-                            mx="auto"
+                            // mx="auto"
                         />
                         <Heading as="h3" size="md" mt={2} overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
                             <Box

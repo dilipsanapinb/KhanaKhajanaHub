@@ -60,7 +60,7 @@ const Navbar = () => {
             margin={'auto'}
             marginBottom={'10px'}
             backgroundColor={'orange'}
-            position={isSticky ? 'sticky' : 'static'}
+            position={isSticky ? 'fixed' : 'static'}
             top={'0'}
             zIndex={'999'}
         >

@@ -105,6 +105,7 @@ const RecipeDetails = () => {
                         {/* Image of dish */}
                         <Box position="relative" width="100%">
                             <Image
+                            
                                 src={recipe.image}
                                 alt={recipe.title}
                                 boxSize={'500px'}
