@@ -1,7 +1,6 @@
 const axios = require("axios");
 require("dotenv").config();
-const _=require('lodash')
-
+const { debounce } =require('lodash')
 // Get all Recipes
 exports.getAllRecipies = async (req, res) => {
     try {
@@ -86,33 +85,37 @@ exports.getNutrinetsByIs = async (req, res) => {
 
 // Search recipies by query
 
-exports.debouncedSearchRecipe =_.debounce( async (req, res) => {
+// Create a debounced
+const debouncedSearchRecipes = debounce(async (query, res) => {
     try {
         const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
         if (!SPOONACULAR_API_KEY) {
             return res.status(404).json({ message: "API-Key not found" });
         }
-        const {query} = req.query;
+
         // Fetch recipe details from the API;
         const response = await axios.get(
-            `https://api.spoonacular.com/recipes/complexSearch`, {
+            `https://api.spoonacular.com/recipes/complexSearch`,
+            {
                 params: {
-                    apiKey:SPOONACULAR_API_KEY,
+                    apiKey: SPOONACULAR_API_KEY,
                     query,
-                }
+                },
             }
         );
+
         const recipes = response.data.results;
-        res.status(200).json({recipes})
+        res.status(200).json({ recipes });
     } catch (error) {
         console.log(error.message);
         res
             .status(500)
-            .json({ message: "Something went wrong at serch recipe by query" });
+            .json({ message: "Something went wrong at search recipe by query" });
     }
-}, 300);
+}, 500);
 
-exports.searchReciies = (req,res) => {
+// Handle the searchRecipes route
+exports.searchRecipes = (req, res) => {
     const { query } = req.query;
-    this.debouncedSearchRecipe(query,res)
+    debouncedSearchRecipes(query, res);
 };
