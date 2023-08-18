@@ -1,5 +1,6 @@
 const axios = require("axios");
 require("dotenv").config();
+const _=require('lodash')
 
 // Get all Recipes
 exports.getAllRecipies = async (req, res) => {
@@ -85,7 +86,7 @@ exports.getNutrinetsByIs = async (req, res) => {
 
 // Search recipies by query
 
-exports.searchReciies = async (req, res) => {
+exports.debouncedSearchRecipe =_.debounce( async (req, res) => {
     try {
         const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
         if (!SPOONACULAR_API_KEY) {
@@ -109,4 +110,9 @@ exports.searchReciies = async (req, res) => {
             .status(500)
             .json({ message: "Something went wrong at serch recipe by query" });
     }
+}, 300);
+
+exports.searchReciies = (req,res) => {
+    const { query } = req.query;
+    this.debouncedSearchRecipe(query,res)
 };
