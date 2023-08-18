@@ -13,6 +13,6 @@ recipeRoutes.get('/:id',reciController.getRecipeById)
 recipeRoutes.get('/:id/nutrients', reciController.getNutrinetsByIs);
 
 // search recipes
-recipeRoutes.get('/api/recipes/search', reciController.searchReciies);
+recipeRoutes.get('/api/recipes/search', reciController.searchRecipes);
 
 module.exports = recipeRoutes;
