@@ -96,7 +96,11 @@ const Navbar = () => {
                         bg={'white'}
                         size={'md'}
                         value={searchInput}
-                        onChange={(e)=>setSearchInput(e.target.value)}
+                        onChange={(e) => {
+                            setSearchInput(e.target.value);
+                            handleSearch();
+                        }
+                        }
                     >
                     </Input>
                     <InputRightElement
@@ -105,7 +109,7 @@ const Navbar = () => {
                     >
                         <BiSearch
                             color='gray.500'
-                            onClick={handleSearch}
+                            
                             style={{cursor:'pointer'}}
                         ></BiSearch>
                     </InputRightElement>
