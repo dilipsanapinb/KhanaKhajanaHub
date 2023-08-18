@@ -1,15 +1,34 @@
 import { Box,Text,Link as ChakraLink } from '@chakra-ui/layout';
 import { Link as RouterLink } from 'react-router-dom';
-import React from 'react'
+import React,{useEffect, useRef} from 'react'
 
-const RecipeSearchResult = ({ recipes,isOpen }) => {
-        
-     if (!isOpen || recipes.length === 0) {
+const RecipeSearchResult = ({ recipes,isOpen,onClose }) => {
+    const boxRef = useRef(null);
+    
+    // window close click outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (boxRef.current && !boxRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('click', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [isOpen, onClose]);
+    
+    if (!isOpen || recipes.length === 0) {
     return null;
   }
     return (
 
         <Box
+            ref={boxRef}
             position={'absolute'}
             zIndex={10}
             mt={'80px'}
