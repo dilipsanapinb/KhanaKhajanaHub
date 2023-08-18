@@ -7,10 +7,13 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { BiSearch } from "react-icons/bi"
-import {HamburgerIcon} from '@chakra-ui/icons'
+import { HamburgerIcon } from '@chakra-ui/icons';
+import axios from 'axios';
+import RecipeSearchResult from '../components/Recipe/RecipeSearchResult'
 const Navbar = () => {
     const [isSticky, setIsSticky] = useState(false);
     const [searchInput, setSearchInput] = useState('');
+    const [recipes,setRecipes]=useState([])
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleScroll = () => {
@@ -23,10 +26,25 @@ const Navbar = () => {
         return () => {
             window.removeEventListener('scroll',handleScroll)
         }
-    },[])
-    const handleSearch = () => {
+    }, [])
     
-}
+    // handle Search
+    const handleSearch =async () => {
+    try {
+         const response = await axios.get('http://localhost:8000/recipe/api/recipes/search', {
+        params: { query: searchInput }, // Pass the search query to the backend
+      });
+
+        const recipesData = response.data.recipes
+;
+        console.log(recipesData
+);
+      setRecipes(recipesData);
+    } catch (error) {
+         console.error('Error searching recipes:', error);
+    }
+    }
+    console.log(recipes);
     return (
         <Flex
             as={'nav'}
@@ -82,7 +100,8 @@ const Navbar = () => {
                     >
                     </Input>
                     <InputRightElement
-                        pointerEvents={'none'}
+                        // pointerEvents={'none'}
+                        cursor={'pointer'}
                     >
                         <BiSearch
                             color='gray.500'
@@ -93,6 +112,8 @@ const Navbar = () => {
                 </InputGroup>
             </Flex>
 
+            {/* Display search results */}
+        <RecipeSearchResult recipes={recipes} isOpen={searchInput !== ''} />
             {/* Right Navbar */}
 
             <Flex className='navbar-right'>

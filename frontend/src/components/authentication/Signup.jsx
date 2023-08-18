@@ -74,7 +74,7 @@ const Signup = () => {
 
     // google OAuth
     const googleAuth = () => {
-        window.open(`http://localhost:8000/google/user/callback`,
+        window.open(`http://localhost:8000/auth/google/callback`,
             "_self");
     };
     return (

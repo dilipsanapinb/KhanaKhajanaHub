@@ -80,7 +80,7 @@ const Login = () => {
 
     const googleAuth = () => {
         window.open(
-			`http://localhost:8000/user/google/callback`,
+			`http://localhost:8000/auth/google/callback`,
 			"_self"
 		);
     }
