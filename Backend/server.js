@@ -2,10 +2,11 @@ const express = require("express");
 const { sequelize } = require("./models");
 const userRoutes = require("./routes/user.routes");
 const recipeRoutes = require("./routes/recipe.routes");
+const savedRecipes = require("./routes/savedrecipes.routes");
 const passport = require("passport");
-const passportSetup = require('./config/passport-config');
-const authRoute = require('./routes/auth.routes')
-const session=require('express-session')
+const passportSetup = require("./config/passport-config");
+const authRoute = require("./routes/auth.routes");
+const session = require("express-session");
 const cookiesession = require("cookie-session");
 const cors = require("cors");
 const app = express();
@@ -19,10 +20,7 @@ app.use(
     saveUninitialized: false,
     // store:new SequelizeStore({db:sequelize})
   })
-)
-
-
-
+);
 
 app.use(
   cors({
@@ -41,10 +39,11 @@ app.get("/", (req, res) => {
 // routes
 app.use("/user", userRoutes);
 app.use("/recipe", recipeRoutes);
+app.use("/savedrecipe", savedRecipes);
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/auth',authRoute)
+app.use("/auth", authRoute);
 
 sequelize
   .sync()
