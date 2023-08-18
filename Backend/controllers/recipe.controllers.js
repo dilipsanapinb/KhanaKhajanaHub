@@ -83,3 +83,30 @@ exports.getNutrinetsByIs = async (req, res) => {
     }
 };
 
+// Search recipies by query
+
+exports.searchReciies = async (req, res) => {
+    try {
+        const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
+        if (!SPOONACULAR_API_KEY) {
+            return res.status(404).json({ message: "API-Key not found" });
+        }
+        const {query} = req.query;
+        // Fetch recipe details from the API;
+        const response = await axios.get(
+            `https://api.spoonacular.com/recipes/complexSearch`, {
+                params: {
+                    apiKey:SPOONACULAR_API_KEY,
+                    query,
+                }
+            }
+        );
+        const recipes = response.data.results;
+        res.status(200).json({recipes})
+    } catch (error) {
+        console.log(error.message);
+        res
+            .status(500)
+            .json({ message: "Something went wrong at serch recipe by query" });
+    }
+};

@@ -7,7 +7,12 @@ recipeRoutes.get('/', reciController.getAllRecipies);
 
 // get a receipt by id
 recipeRoutes.get('/:id',reciController.getRecipeById)
-module.exports = recipeRoutes;
+
 
 // get nutrinets by id
-recipeRoutes.get('/:id/nutrients',reciController.getNutrinetsByIs)
+recipeRoutes.get('/:id/nutrients', reciController.getNutrinetsByIs);
+
+// search recipes
+recipeRoutes.get('/api/recipes/search', reciController.searchReciies);
+
+module.exports = recipeRoutes;
