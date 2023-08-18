@@ -13,7 +13,8 @@ import RecipeSearchResult from '../components/Recipe/RecipeSearchResult'
 const Navbar = () => {
     const [isSticky, setIsSticky] = useState(false);
     const [searchInput, setSearchInput] = useState('');
-    const [recipes,setRecipes]=useState([])
+    const [recipes, setRecipes] = useState([])
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleScroll = () => {
@@ -39,12 +40,16 @@ const Navbar = () => {
 ;
         console.log(recipesData
 );
-      setRecipes(recipesData);
+        setRecipes(recipesData);
+        setIsSearchOpen(true);
     } catch (error) {
          console.error('Error searching recipes:', error);
     }
     }
-    console.log(recipes);
+     const handleCloseSearch = () => {
+    setIsSearchOpen(false);
+  };
+    // console.log(recipes);
     return (
         <Flex
             as={'nav'}
@@ -117,7 +122,7 @@ const Navbar = () => {
             </Flex>
 
             {/* Display search results */}
-        <RecipeSearchResult recipes={recipes} isOpen={searchInput !== ''} />
+        <RecipeSearchResult  recipes={recipes} isOpen={isSearchOpen} onClose={handleCloseSearch} />
             {/* Right Navbar */}
 
             <Flex className='navbar-right'>
