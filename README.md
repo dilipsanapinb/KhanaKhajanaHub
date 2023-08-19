@@ -14,7 +14,7 @@ Welcome to KhanaKhazanaHub, your gateway to a world of culinary delights infused
 - https://khanakhazana-yqj7.onrender.com/
 
 ## Deployed link of the full stack app with the backend link
-- 
+-https://subtle-baklava-e54a44.netlify.app/ 
 
 ## Frontend
 - React.js 
