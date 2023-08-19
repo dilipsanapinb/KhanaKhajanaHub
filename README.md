@@ -13,6 +13,9 @@ Welcome to KhanaKhazanaHub, your gateway to a world of culinary delights infused
 - Deployed on render may take time to get a data
 - https://khanakhazana-yqj7.onrender.com/
 
+## Deployed link of the full stack app with the backend link
+- 
+
 ## Frontend
 - React.js 
 - Chakra UI
