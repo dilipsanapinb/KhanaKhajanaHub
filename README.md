@@ -48,7 +48,7 @@ To get started with KhanaKhazanaHub, follow these steps:
 
 
 ## Live demonstration of app:
-<a href="">Link for the Live demonstration</a>
+<a href="https://youtu.be/KJvdKfs7l1U">Link for the Live demonstration</a>
 
 
 # API information
