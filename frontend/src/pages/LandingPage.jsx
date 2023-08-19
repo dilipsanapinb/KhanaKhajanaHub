@@ -14,7 +14,6 @@ const LandingPage = () => {
                 <Navbar />
             </nav>
             <main>
-
                 {/* Banner */}
                 <Box bg="gray.100" p={8}>
                     <Flex maxW="100%" mx="auto" flexDirection={{ base: 'column', md: 'row' }} height={'600px'}>
@@ -65,7 +64,7 @@ const LandingPage = () => {
                     justify="center"
                     width={'80%'}
                     m={'auto'}
-                   
+                    
                     py={8} >
                     <Box w="100%">
                         <Text

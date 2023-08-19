@@ -48,7 +48,7 @@ const Login = () => {
             };
 
             const { data } = await axios.post(
-                "http://localhost:8000/user/api/login",
+                "https://khanakhazana-yqj7.onrender.com/user/api/login",
                 { email, password },
                 config
             );
@@ -80,7 +80,7 @@ const Login = () => {
 
     const googleAuth = () => {
         window.open(
-			`http://localhost:8000/auth/google/callback`,
+			`https://khanakhazana-yqj7.onrender.com/auth/google/callback`,
 			"_self"
 		);
     }
