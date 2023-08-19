@@ -102,6 +102,8 @@ const LatestRecipeSlider = () => {
                         p={2}
                         width={isMobile ? '100%' : 'auto'}
                         mb={4}
+                        cursor={'pointer'}
+                        _hover={{ transform: 'translateY(-10px)', boxShadow: 'xl' }}
                         // textAlign="center" // Center the content
                     >
                         <Image

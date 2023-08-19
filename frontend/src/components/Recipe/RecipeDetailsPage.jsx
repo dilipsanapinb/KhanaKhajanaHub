@@ -20,6 +20,7 @@ const RecipeDetails = () => {
     const [recipe, setRecipe] = useState({});
     const [nutrients, setNutrients] = useState({})
     const navigate = useNavigate();
+    
     // get a nutrints by id
     useEffect(() => {
         const fetchNutrients = async () => {
@@ -30,11 +31,20 @@ const RecipeDetails = () => {
     }, [id])
     // fetching the recipe by id
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await axios.get(`http://localhost:8000/recipe/${id}`);
+        try {
+            const token = JSON.parse(localStorage.getItem('userInfo'));
+            if (!token) {
+                return alert("User not autheticated, Please login first")
+            }
+            const fetchData = async () => {
+            const response = await axios.get(`https://khanakhazana-yqj7.onrender.com/recipe/${id}`);
             setRecipe(response.data);
         }
         fetchData()
+        } catch (error) {
+            
+        }
+       
     }, [id]);
 
     const handleSave = async () => {
@@ -48,7 +58,7 @@ const RecipeDetails = () => {
                     image: recipe.image
                 }
                 console.log(data);
-                const response = await axios.post('http://localhost:8000/savedrecipe/save',
+                const response = await axios.post('https://khanakhazana-yqj7.onrender.com/savedrecipe/save',
                     data
                     , {
                         headers: {
@@ -129,14 +139,14 @@ const RecipeDetails = () => {
                         justifyContent={'space-between'}
                     >
                         {/* Likes */}
-                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'}>
+                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'} cursor={'pointer'}>
                             <Icon as={BsHeart} boxSize={8} />
                             <Text fontSize={'sm'} mt={2}>{recipe.aggregateLikes }  </Text>
                         </Box>
 
 
                         {/* save */}
-                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'}>
+                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'} cursor={'pointer'}>
                             <Button  size={'sm'} onClick={handleSave} bg={'none'}>
                                 <Icon as={BsBookmark} boxSize={8} />
                             </Button>
@@ -144,14 +154,14 @@ const RecipeDetails = () => {
                         </Box>
 
                         {/* Share */}
-                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'}>
+                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'} cursor={'pointer'}>
                             <Icon as={BsShare} boxSize={8} />
                             <Text fontSize={'sm'} mt={2}>Share </Text>
                         </Box>
 
                         {/*in app */}
                         {/* Share */}
-                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'}>
+                        <Box textAlign={'center'} display={'flex'} flexDirection={'column'} cursor={'pointer'}>
                             <Icon as={AiOutlineMobile} boxSize={8} />
                             <Text fontSize={'sm'} mt={2}>In app </Text>
                         </Box>

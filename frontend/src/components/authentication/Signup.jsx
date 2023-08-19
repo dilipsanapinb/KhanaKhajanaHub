@@ -37,10 +37,10 @@ const Signup = () => {
                 password: password
             };
             console.log(userData);
-            const response = await axios.post('http://localhost:8000/user/api/register', userData, {
+            const response = await axios.post('https://khanakhazana-yqj7.onrender.com/user/api/register', userData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': 'http://localhost:8000'
+                    'Access-Control-Allow-Origin': 'https://khanakhazana-yqj7.onrender.com/'
                 }
             });
 
@@ -74,7 +74,7 @@ const Signup = () => {
 
     // google OAuth
     const googleAuth = () => {
-        window.open(`http://localhost:8000/auth/google/callback`,
+        window.open(`https://khanakhazana-yqj7.onrender.com/auth/google/callback`,
             "_self");
     };
     return (

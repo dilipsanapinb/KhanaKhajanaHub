@@ -32,7 +32,7 @@ const Navbar = () => {
     // handle Search
     const handleSearch =async () => {
     try {
-         const response = await axios.get('http://localhost:8000/recipe/api/recipes/search', {
+         const response = await axios.get('https://khanakhazana-yqj7.onrender.com/recipe/api/recipes/search', {
         params: { query: searchInput }, // Pass the search query to the backend
       });
 
@@ -114,7 +114,7 @@ const Navbar = () => {
                     >
                         <BiSearch
                             color='gray.500'
-                            
+                            onClick={handleSearch}
                             style={{cursor:'pointer'}}
                         ></BiSearch>
                     </InputRightElement>
