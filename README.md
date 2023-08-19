@@ -53,9 +53,9 @@ To get started with KhanaKhazanaHub, follow these steps:
 
 # API information
 
-### Basic route
+## Basic route
 - GET https://khanakhazana-yqj7.onrender.com/
-### User Routes:
+## User Routes:
 
 #### Get All Users
 - GET /user/api/users
@@ -67,7 +67,7 @@ To get started with KhanaKhazanaHub, follow these steps:
 - POST /user/api/login
 
 
-### Recipes Routes
+## Recipes Routes
 
 #### Gel All recipes
 - GET recipe/
@@ -81,7 +81,7 @@ To get started with KhanaKhazanaHub, follow these steps:
 - Get /recipe/api/recipes/search
 
 
-### Save the favourite recipes to backend
+## Save the favourite recipes to backend
 
 #### Get all saved recipes by userId
 - GET savedrecipe/
@@ -93,7 +93,7 @@ To get started with KhanaKhazanaHub, follow these steps:
 - DELETE /savedrecipe/:recipeid/delete
 
 
-### Google OAuth
+## Google OAuth
 
 #### Get tha user
 
