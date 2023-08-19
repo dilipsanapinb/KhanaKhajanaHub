@@ -24,7 +24,7 @@ const RecipeDetails = () => {
     // get a nutrints by id
     useEffect(() => {
         const fetchNutrients = async () => {
-            const response = await axios.get(`http://localhost:8000/recipe/${id}/nutrients`);
+            const response = await axios.get(`https://khanakhazana-yqj7.onrender.com/recipe/${id}/nutrients`);
             setNutrients(response.data);
         }
         fetchNutrients()
