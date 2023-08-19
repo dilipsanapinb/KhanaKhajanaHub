@@ -103,32 +103,32 @@ GET /auth/google/callback
 
 # Frontend Guidence:
 
-1. Landing Page
+1. ## Landing Page
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Landing%20Page.png" alt="langing Page"></img>
 
-2. Drawer
+2. ## Drawer
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Drawer%20on%20right%20side.png" alt="Drawer Page"></img>
 
-3. Login Page
+3. ## Login Page
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Login%20Page.png" alt="Login Page"></img>
 
-4. Signup Page
+4. ## Signup Page
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Sign%20Up%20Page.png" alt="Signup Page"></img>
 
-5. Recipes Page
+5. ## Recipes Page
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipes%20page1.png" alt="Recipes Page"></img>
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Pagination.png" alt="Recipes Page"></img>
 
-6. Search Bar
+6. ## Search Bar
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Search%20bar.png" alt="search Page"></img>
 
-7. RecipeDeatails Page
+7. ## RecipeDeatails Page
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipe%20details1.png" alt="details Page"></img>
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipe%20Details2.png" alt="details Page"></img>
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipe%20details3.png" alt="details Page"></img>
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipe%20details4.png" alt="details Page"></img>
 
-8. Saved Recipes Page
+8. ## Saved Recipes Page
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Save%20recipes%20page.png" alt="saved recipes Page"></img>
 
 
