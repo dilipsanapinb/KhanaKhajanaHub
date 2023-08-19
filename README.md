@@ -125,7 +125,7 @@ GET /auth/google/callback
 7. ## RecipeDeatails Page
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipe%20details1.png" alt="details Page"></img>
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipe%20Details2.png" alt="details Page"></img>
-<img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipe%20details3.png" alt="details Page"></img>
+<img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipe%20Details-4.png" alt="details Page"></img>
 <img src="https://github.com/dilipsanapinb/KhanaKhajanaHub/blob/main/Images/Recipe%20details4.png" alt="details Page"></img>
 
 8. ## Saved Recipes Page
