@@ -8,13 +8,14 @@ Welcome to KhanaKhazanaHub, your gateway to a world of culinary delights infused
 - Sequelize
 - MySQL
 - AWS RDS(for storing the data on cloud)
+- spoonacular api : https://api.spoonacular.com/recipes
 
 ## Deployed link of the backend
 - Deployed on render may take time to get a data
 - https://khanakhazana-yqj7.onrender.com/
 
 ## Deployed link of the full stack app with the backend link
-- 
+-https://subtle-baklava-e54a44.netlify.app/ 
 
 ## Frontend
 - React.js 
@@ -41,6 +42,7 @@ To get started with KhanaKhazanaHub, follow these steps:
 1. Clone this repository.
 2. Install the required dependencies for both the frontend and backend by running command npm install.
 3. Set up the database configurations.
+4. Create account on spoonacular api and get a api key to fetch the recipes data
 4. Run the backend server with command npm start
 5. Run the backend server with command npm start
 
@@ -50,4 +52,53 @@ To get started with KhanaKhazanaHub, follow these steps:
 
 
 # API information
+
+### Basic route
+- GET https://khanakhazana-yqj7.onrender.com/
+### User Routes:
+
+#### Get All Users
+- GET /user/api/users
+
+#### Registe the user
+- POST /user/api/register
+
+#### Login the user
+- POST /user/api/login
+
+
+### Recipes Routes
+
+#### Gel All recipes
+- GET recipe/
+#### Get recipe details by id
+- GET recipe/:id
+
+#### get nutrients of recipe by id
+- GET /recipe/:id/nutrients
+
+#### search recipe by query
+- Get /recipe/api/recipes/search
+
+
+### Save the favourite recipes to backend
+
+#### Get all saved recipes by userId
+- GET savedrecipe/
+
+#### Save the favourite racipe
+- POST /savedrecipe/save
+
+### delete the saved recipe
+- DELETE /savedrecipe/:recipeid/delete
+
+
+### Google OAuth
+
+#### Get tha user
+
+GET /auth/google/callback
+
+
+
 
