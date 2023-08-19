@@ -43,6 +43,9 @@ const Recipe = () => {
             <Heading as="h1" textAlign="center" mb={8}>
                 Explore Delicious Recipes
             </Heading>
+
+            {/* After mapping the data of recipes appended to page */}
+
             <SimpleGrid columns={{ base: 2, md: 2, lg: 5 }} spacing={8}>
                 {recipes.map((recipe) => (
                     <Box
@@ -86,6 +89,10 @@ const Recipe = () => {
                     </Box>
                 ))}
             </SimpleGrid>
+
+            {/* Mapping and appending data ended */}
+
+            {/* Pagination buttons and pagination */}
             <Center mt={8}>
                 <Button
                     disabled={currentPage === 1}
