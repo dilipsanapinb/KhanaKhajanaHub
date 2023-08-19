@@ -101,4 +101,32 @@ GET /auth/google/callback
 
 
 
+# Frontend Guidence:
+
+1. Landing Page
+<img src="" alt="langing Page"></img>
+
+2. Drawer
+<img src="" alt="Drawer Page"></img>
+
+3. Login Page
+<img src="" alt="Login Page"></img>
+
+4. Signup Page
+<img src="" alt="Signup Page"></img>
+
+5. Recipes Page
+<img src="" alt="Recipes Page"></img>
+
+6. Search Bar
+<img src="" alt="search Page"></img>
+
+7. RecipeDeatails Page
+<img src="" alt="details Page"></img>
+
+8. Saved Recipes Page
+<img src="" alt="saved recipes Page"></img>
+
+
+
 
