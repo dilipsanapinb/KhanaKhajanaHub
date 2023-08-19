@@ -11,7 +11,7 @@ Welcome to KhanaKhazanaHub, your gateway to a world of culinary delights infused
 
 ## Deployed link of the backend
 - Deployed on render may take time to get a data
-- <a href="https://khanakhazana-yqj7.onrender.com/"></a>
+- https://khanakhazana-yqj7.onrender.com/
 
 ## Frontend
 - React.js 
